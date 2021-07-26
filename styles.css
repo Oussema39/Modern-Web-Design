@@ -1,0 +1,330 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600;800&display=swap');
+
+:root{
+    --primary : rgba(249 ,179 ,1 ,1);
+}
+
+*,*::before,*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body{
+    justify-content: center;
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--primary);
+    padding: 40px 50px 25px 50px;
+}
+.content-wrapper{
+    position: relative;
+    width: 90%;
+    background-color: white;
+    box-shadow: 5px 5px 35px 10px rgba(0, 0, 0, .3);
+}
+.left-color{
+    position: absolute;
+    background-color: var(--primary);
+    height: 100%;
+    width: max(20%,100px);
+}
+.header-nav{
+    padding: 10px 40px;
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    align-items: center;
+}
+.nav-actions{
+    display: flex;
+    align-items: center;
+    z-index: 2;
+}
+.ham,.search{
+    height: 25px;
+    width: 25px;
+    filter: invert(1);
+}
+.ham:hover,.search:hover{
+    cursor: pointer;
+}
+.ham{
+    background-image: url('ham.svg');
+    margin-right: 80px;
+}
+.search{
+    background-image: url('search.svg');
+}
+
+.nav-links{
+    display: flex;
+    list-style: none;
+}
+.nav-links li{
+    margin-left: 80px;
+}
+.nav-links li a{
+    position: relative;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: black;
+}
+.nav-links li a::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary);
+    bottom: -2px;
+    transition: transform .2s;
+    transform-origin: right;
+    transform: scaleX(0);
+}
+.nav-links li:first-child a::before{
+    transform: scaleX(1);
+}
+.nav-links li a:hover::before{
+    transform-origin: left;
+    transform: scaleX(1);
+}
+.main-content{
+    left: 40px;
+    width: calc(100% - 60px);
+    height: calc(100% - 140px);
+    position: absolute;
+    background-color: none;
+    display: flex;
+    justify-content: space-between;
+}
+.img-container{
+    min-height: 100%;
+}
+.img-container,.desc{
+    width: 48%;
+}
+.img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(20px);
+    height: 80%;
+    background-color: transparent;
+    border: .2px solid rgba(249 ,179 ,1 ,.4);
+    transition: border .2s;
+}
+
+.img img{
+    object-fit: cover;
+    width: 90%;
+    height: 90%;
+    transition: width,height .2s;
+}
+.img img:hover{
+    width: 100%;
+    height: 100%;
+}
+.img:hover {
+    border: none;
+}
+
+.img-actions{
+    height: 20%;
+    display: flex;
+}
+
+.range,.chevron{
+    width: 50%;
+}
+.range{
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    background-color:  rgb(0, 0, 0);
+}
+.range-wrapper{
+    position: relative;
+    margin: 0 8px;
+    width: 100%;
+    overflow: hidden;
+    background-color: white;
+    min-height: 15px;
+    border-radius: 10px;
+}
+.range-slider{
+    transition: transform .2s;
+    transform: translateX(-100%);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary);
+    border-radius: 10px;
+}
+.range-wrapper:hover .range-slider{
+    transform: translateX(-50%);
+}
+
+.range input{
+    z-index: 2;
+    width: 100%;
+    appearance: none;
+    height: 10px;
+    outline: none;
+    background: white;
+    border-radius: 10px;
+    transition: transform .2s;
+    transform-origin: center;
+    /* transform: scaleY(.3); */
+}
+.range input:hover{
+    cursor: pointer;
+    transform: scaleY(1);
+}
+
+.range input::-webkit-slider-thumb{
+    display: none;
+}
+.range input:hover{
+    display: block;
+}
+.range span{
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--primary);
+}
+.chevron{
+    column-gap: 20px;
+    background-color: var(--primary);
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chevron-left,.chevron-right{
+    height: 20px;
+    width: 20px;
+}
+.chevron-left,.chevron-right{
+    height: 100%;
+    width: 50%;
+    background-size: 15px;
+    background-position: center;
+    background-image: url('chevron.svg');
+    background-repeat: no-repeat;
+}
+.chevron-left{
+    transform: rotateZ(180deg);
+}
+.chevron-left:hover,.chevron-right:hover{
+    cursor: pointer;
+}
+.desc button{
+    cursor: pointer;
+    z-index: 1;
+    position: relative;
+    padding: 8px 18px;
+    background-color: rgb(150, 147, 147);
+    color: rgb(240, 239, 239);
+    font-size: 18px;
+    font-weight: 600;
+    outline: none;
+    border: none;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+}
+.desc button::before{
+    transform-origin: right;
+    transition: transform .2s;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary);
+    left: 0;
+    top: 0;
+    z-index: -1;
+    transform: scaleX(0);
+}
+/* .desc button:hover{
+    color: black;
+} */
+.desc button:hover::before{
+    transform-origin: left;
+    transform: scaleX(1);
+}
+.desc button:hover{
+
+}
+.desc h1{
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+.desc p{
+    color: rgb(151, 134, 134);
+    font-weight: 300;
+    line-height: 1.8rem;
+    margin-bottom: 10px;
+}
+.read-more{
+    display: flex;
+    margin-bottom: 20px;
+}
+.read-more:hover{
+    cursor: pointer;
+}
+.desc a{
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-right: 20px;
+    color: black;
+}
+.desc .arrow-right{
+    background-repeat: no-repeat;
+    background-image: url('arrow.svg');
+    width: 30px;
+}
+.desc h3{
+    margin-bottom: 10px;
+    font-weight: 300;
+}
+.desc form{
+    height: 20%;
+    display: flex;
+}
+.desc form input[type="text"]{
+    width: 60%;
+}
+
+.desc form input[type="submit"]{
+    width: 40%;
+}
+.desc form input[type="text"]{
+    height: 100%;
+    padding: 0 20px;
+    font-size: 15px;
+    outline: none;
+    border: none;
+    box-shadow: 5px 5px 35px  rgba(0, 0, 0, .3);
+}
+
+.desc form input[type="submit"]{
+    font-size: 20px;
+    font-weight: 600;
+    background-color: var(--primary);
+    outline: none;
+    border: none;
+}
+.desc form input[type="submit"]:hover{
+    cursor: pointer;
+}
+@media (max-width : 1050px) {
+    .nav-links {
+        display: none;
+    }
+}
